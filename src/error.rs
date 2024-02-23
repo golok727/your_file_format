@@ -3,12 +3,14 @@ pub mod crab_error {
     #[derive(Debug)]
     pub enum Error {
         IOError(String),
+        DeserializeError(String),
     }
 
     impl fmt::Display for Error {
         fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
             match self {
                 Self::IOError(msg) => write!(f, "Error Io: {}", msg),
+                Self::DeserializeError(msg) => write!(f, "Error Deserializing: {}", msg),
             }
         }
     }
