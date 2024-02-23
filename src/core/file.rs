@@ -1,8 +1,10 @@
+use crate::error::crab_error;
 use std::{
     fs,
     io::{Read, Write},
 };
-pub fn read_as_bytes(filepath: &'static str) -> Result<Vec<u8>, std::io::Error> {
+
+pub fn read_as_bytes(filepath: &'static str) -> Result<Vec<u8>, crab_error::Error> {
     let mut file = fs::File::open(filepath)?;
 
     let mut buffer = Vec::<u8>::new();
@@ -12,7 +14,7 @@ pub fn read_as_bytes(filepath: &'static str) -> Result<Vec<u8>, std::io::Error> 
     Ok(buffer)
 }
 
-pub fn write_bytes(filepath: &'static str, data: &Vec<u8>) -> Result<(), std::io::Error> {
+pub fn write_bytes(filepath: &'static str, data: &Vec<u8>) -> Result<(), crab_error::Error> {
     let mut file = fs::File::create(filepath)?;
     file.write_all(&data)?;
     Ok(())
@@ -22,7 +24,7 @@ pub fn write_bytes(filepath: &'static str, data: &Vec<u8>) -> Result<(), std::io
 mod tests {
     use super::*;
     #[test]
-    fn read_file() -> Result<(), std::io::Error> {
+    fn read_file() -> Result<(), crab_error::Error> {
         let data = b"Radha Krsna".to_vec();
 
         write_bytes("./radha.krsna", &data).unwrap();

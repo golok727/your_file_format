@@ -2,17 +2,12 @@ pub mod crab_error {
     use std::fmt;
     #[derive(Debug)]
     pub enum Error {
-        FileReadError(String),
-        FileWriteError(String),
         IOError(String),
     }
 
     impl fmt::Display for Error {
         fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
             match self {
-                Self::FileReadError(msg) => write!(f, "Error reading from file: {}", msg),
-
-                Self::FileWriteError(msg) => write!(f, "Error Writing to file: {}", msg),
                 Self::IOError(msg) => write!(f, "Error Io: {}", msg),
             }
         }
@@ -31,7 +26,7 @@ mod tests {
 
     #[test]
     fn read_error() {
-        let error = crab_error::Error::FileReadError("Something is not right".to_owned());
+        let error = crab_error::Error::IOError("Something is not right".to_owned());
 
         assert_eq!(
             error.to_string(),
