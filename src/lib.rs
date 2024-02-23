@@ -1,4 +1,5 @@
 pub mod core;
+pub mod error;
 
 pub fn radha() -> &'static str {
     "krsna"
