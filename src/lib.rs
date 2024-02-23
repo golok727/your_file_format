@@ -1,3 +1,5 @@
+pub mod core;
+
 pub fn radha() -> &'static str {
     "krsna"
 }
@@ -7,9 +9,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-        let radha = radha();
-        println!("{radha}");
-        assert_eq!(radha, "krsna");
+    fn main() {
+        let krsna = radha();
+        println!("{krsna}");
+        assert_eq!(krsna, "krsna")
     }
 }
